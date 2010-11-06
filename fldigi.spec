@@ -1,12 +1,11 @@
 Name:		fldigi
 Version:	3.20.28
-Release:	%mkrel 1
-
-Summary:        Advanced Intrusion Detection Environment
+Release:	%mkrel 2
+Summary:	Fldigi is a software modem for Amateur Radio use
 License:        GPLv3
-Group:          Monitoring
-URL:            http://sourceforge.net/projects/aide
-Source0:        http://prdownloads.sourceforge.net/fldigi/%{name}-%{version}.tar.gz
+Group:          Communications
+URL:            http://www.w1hkj.com
+Source0:        http://www.w1hkj.com/download.html/%{name}-%{version}.tar.gz
 BuildRequires:  libpulseaudio-devel
 BuildRequires:  portaudio-devel
 BuildRequires: 	fltk-devel
