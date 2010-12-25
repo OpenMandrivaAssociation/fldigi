@@ -1,8 +1,8 @@
 Name:		fldigi
-Version:	3.20.29
+Version:	3.20.33
 Release:	%mkrel 1
 Summary:	Fldigi is a software modem for Amateur Radio use
-License:        GPLv3
+License:        GPLv3+
 Group:          Communications
 URL:            http://www.w1hkj.com
 Source0:        http://www.w1hkj.com/download.html/%{name}-%{version}.tar.gz
@@ -12,8 +12,7 @@ BuildRequires: 	fltk-devel
 BuildRequires:  libxmlrpc-c-devel
 BuildRequires:	hamlib-devel
 BuildRequires:	sndfile-devel
-
-
+BuildRequires:	asciidoc
 
 %description
 Fldigi is a software modem for Amateur Radio use. It is a sound card based
@@ -24,7 +23,8 @@ BPSK and QPSK        31, 63, 125, 250 (both), and 63F and 500 (BPSK only)
 PSKR                 125, 250, and 500
 CW                   speeds from 5 to 200 wpm
 DominoEX             4, 5, 8, 11, 16 and 22; also with FEC
-Hellschreiber        Feld Hell, Slow Hell, Hell x5/x9, FSKHell(-105) and Hell 80
+Hellschreiber        Feld Hell, Slow Hell, Hell x5/x9, FSKHell(-105)
+                     and Hell 80
 MFSK                 4, 8, 11, 16, 22, 31, 32 and 64; most with image support
 MT63                 500, 1000 and 2000
 OLIVIA               various tones and bandwidths
@@ -34,50 +34,38 @@ Throb and ThrobX     1, 2, and 4
 WWV                  receive only - calibrate your sound card to WWV
 Frequency Analysis   receive only - measure the frequency of a carrier
 
-Fldigi can also control a transceiver using Hamlib or RigCAT I/O, perform online
-or cdrom QRZ queries, log QSOs with the built-in logbook or Xlog, and send
-reception reports to the PSK Automatic Propagation Reporter.
-
-
+Fldigi can also control a transceiver using Hamlib or RigCAT I/O, perform
+online or cdrom QRZ queries, log QSOs with the built-in logbook or Xlog,
+and send reception reports to the PSK Automatic Propagation Reporter.
 
 %prep 
 %setup -q
 
 %build 
-%configure 
-%make
+%configure2_5x \
+	--disable-rpath
+
+%make \
+	ASCIIDOC_ICONS_DIR=%{_sysconfdir}/asciidoc/images/icons \
+	V=1
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall_std
 
-%clean 
-rm -rf $RPM_BUILD_ROOT 
+%find_lang %{name}
 
-%files 
-%defattr(0755,root,root) 
-%doc README NEWS COPYING AUTHORS
+%clean
+rm -rf %{buildroot} 
+
+%files -f %{name}.lang
+%defattr(-,root,root) 
+%doc README NEWS AUTHORS doc/guide*
 %{_bindir}/flarq
 %{_bindir}/fldigi
 %{_bindir}/fldigi-shell
-%{_datadir}/applications/flarq.desktop
-%{_datadir}/applications/fldigi.desktop
-%{_datadir}/locale/fr/LC_MESSAGES/fldigi.mo
-%{_datadir}/pixmaps/flarq.xpm
-%{_datadir}/pixmaps/fldigi.xpm
+%{_datadir}/applications/*.desktop
+%{_datadir}/pixmaps/*.xpm
 %{_mandir}/man1/flarq.1*
 %{_mandir}/man1/fldigi.1*
 %{_mandir}/man1/fldigi-shell.1*
-
- 
-
-
-
-
-
-
-
-
-
-
-
