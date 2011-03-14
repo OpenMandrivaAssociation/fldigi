@@ -1,11 +1,11 @@
 Name:		fldigi
-Version:	3.20.33
+Version:	3.21.5
 Release:	%mkrel 1
 Summary:	Fldigi is a software modem for Amateur Radio use
 License:        GPLv3+
 Group:          Communications
 URL:            http://www.w1hkj.com
-Source0:        http://www.w1hkj.com/download.html/%{name}-%{version}.tar.gz
+Source0:        http://www.w1hkj.com/downloads/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:  libpulseaudio-devel
 BuildRequires:  portaudio-devel
 BuildRequires: 	fltk-devel
