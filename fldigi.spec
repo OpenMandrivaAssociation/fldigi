@@ -1,6 +1,6 @@
 Name:		fldigi
 Version:	3.21.45
-Release:	1
+Release:	2
 Summary:	Fldigi is a software modem for Amateur Radio use
 License:        GPLv3+
 Group:          Communications
@@ -10,7 +10,7 @@ BuildRequires:  pulseaudio-devel
 BuildRequires:  portaudio-devel
 BuildRequires: 	fltk-devel
 BuildRequires:  libxmlrpc-c-devel
-#BuildRequires:	hamlib-devel
+BuildRequires:	hamlib-devel
 BuildRequires:	sndfile-devel
 BuildRequires:	asciidoc
 
@@ -44,7 +44,8 @@ and send reception reports to the PSK Automatic Propagation Reporter.
 %build 
 %configure2_5x \
 	--disable-rpath \
-	--with-xmlrpc
+	--with-xmlrpc \
+	--with-hamlib
 
 %make LIBS='-lxmlrpc_server_abyss++ -lxmlrpc_server++ -lxmlrpc_server_abyss -lxmlrpc_server -lxmlrpc_abyss -lxmlrpc++ -lxmlrpc -lxml2 -lxmlrpc_util' \
 	ASCIIDOC_ICONS_DIR=%{_sysconfdir}/asciidoc/images/icons \
