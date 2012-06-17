@@ -1,5 +1,5 @@
 Name:		fldigi
-Version:	3.21.42
+Version:	3.21.45
 Release:	1
 Summary:	Fldigi is a software modem for Amateur Radio use
 License:        GPLv3+
@@ -63,6 +63,7 @@ and send reception reports to the PSK Automatic Propagation Reporter.
 %{_bindir}/fldigi-shell
 %{_datadir}/applications/*.desktop
 %{_datadir}/pixmaps/*.xpm
+%{_datadir}/%{name}/NAVTEX_Stations.csv
 %{_mandir}/man1/flarq.1*
 %{_mandir}/man1/fldigi.1*
 %{_mandir}/man1/fldigi-shell.1*
