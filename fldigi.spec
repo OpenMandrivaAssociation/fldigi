@@ -1,7 +1,7 @@
 Name:		fldigi
 Version:	3.21.61
 Release:	1
-Summary:	Fldigi is a software modem for Amateur Radio use
+Summary:	Software modem for Amateur Radio use
 License:        GPLv3+
 Group:          Communications
 URL:            http://www.w1hkj.com
