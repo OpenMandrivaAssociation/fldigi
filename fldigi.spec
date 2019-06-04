@@ -26,6 +26,8 @@ BuildRequires:	fltk-devel
 BuildRequires:	asciidoc
 BuildRequires:	desktop-file-utils
 
+Requires:	flrig
+
 %description
 Fldigi is a software modem for Amateur Radio use. It is a sound card based
 program that is used for both transmitting and receiving data in any of the
