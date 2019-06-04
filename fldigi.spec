@@ -1,18 +1,30 @@
 Name:		fldigi
-Version:	3.21.61
-Release:	3
-Summary:	Software modem for Amateur Radio use
-License:        GPLv3+
-Group:          Communications
-URL:            http://www.w1hkj.com
-Source0:        http://www.w1hkj.com/downloads/%{name}/%{name}-%{version}.tar.gz
-BuildRequires:  pulseaudio-devel
-BuildRequires:  portaudio-devel
-BuildRequires: 	fltk-devel
-BuildRequires:  libxmlrpc-c-devel
-BuildRequires:	hamlib-devel
-BuildRequires:	sndfile-devel
+Version:	4.1.03
+Release:	%mkrel 1
+Summary:	A software modem for Amateur Radio use
+License:	GPLv3+
+Group:		Communications/Radio
+URL:		http://www.w1hkj.com
+Source0:	https://sourceforge.net/projects/fldigi/files/%{name}/%{name}-%{version}.tar.gz
+BuildRequires:	pkgconfig(hamlib) >= 1.2.4
+BuildRequires:	pkgconfig(libpng) >= 1.2.8
+BuildRequires:	pkgconfig(libpulse-simple) >= 0.9.7
+BuildRequires:	pkgconfig(portaudio-2.0) >= 19
+BuildRequires:	pkgconfig(samplerate) >= 0.1.1
+BuildRequires:	pkgconfig(sndfile) >= 1.0.10
+BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(fontconfig)
+BuildRequires:  pkgconfig(xrender)
+BuildRequires:  pkgconfig(xext)
+BuildRequires:  pkgconfig(xinerama)
+BuildRequires:  pkgconfig(xfixes)
+BuildRequires:  pkgconfig(xft)
+BuildRequires:  pkgconfig(cairo)
+BuildRequires:  pkgconfig(libjpeg)
+BuildRequires:  pkgconfig(alsa)
+BuildRequires:	fltk-devel
 BuildRequires:	asciidoc
+BuildRequires:	desktop-file-utils
 
 %description
 Fldigi is a software modem for Amateur Radio use. It is a sound card based
@@ -38,33 +50,40 @@ Fldigi can also control a transceiver using Hamlib or RigCAT I/O, perform
 online or cdrom QRZ queries, log QSOs with the built-in logbook or Xlog,
 and send reception reports to the PSK Automatic Propagation Reporter.
 
-%prep 
+%prep
 %setup -q
 
-%build 
-%configure2_5x \
-	--disable-rpath \
-	--with-xmlrpc \
-	--with-hamlib
-
-%make LIBS='-lxmlrpc_server_abyss++ -lxmlrpc_server++ -lxmlrpc_server_abyss -lxmlrpc_server -lxmlrpc_abyss -lxmlrpc++ -lxmlrpc -lxml2 -lxmlrpc_util' \
-	ASCIIDOC_ICONS_DIR=%{_sysconfdir}/asciidoc/images/icons \
-	V=1
+%build
+%configure --disable-rpath
+%make_build ASCIIDOC_ICONS_DIR=%{_sysconfdir}/asciidoc/images/icons V=1
 
 %install
-%makeinstall_std
+%make_install
+
+desktop-file-install \
+--dir=%{buildroot}%{_datadir}/applications \
+--remove-category='Network' \
+--add-category='AudioVideo' \
+--add-category='Audio' \
+--add-category='X-Mageia-CrossDesktop' \
+%{buildroot}%{_datadir}/applications/fldigi.desktop
+
+desktop-file-install \
+--dir=%{buildroot}%{_datadir}/applications \
+--remove-category='Network' \
+--add-category='AudioVideo' \
+--add-category='Audio' \
+--add-category='X-Mageia-CrossDesktop' \
+%{buildroot}%{_datadir}/applications/flarq.desktop
 
 %find_lang %{name}
-
 
 %files -f %{name}.lang
 %doc README NEWS AUTHORS doc/guide*
 %{_bindir}/flarq
-%{_bindir}/fldigi
-%{_bindir}/fldigi-shell
+%{_bindir}/%{name}
 %{_datadir}/applications/*.desktop
+%{_datadir}/%{name}/
 %{_datadir}/pixmaps/*.xpm
-%{_datadir}/%{name}/NAVTEX_Stations.csv
 %{_mandir}/man1/flarq.1*
-%{_mandir}/man1/fldigi.1*
-%{_mandir}/man1/fldigi-shell.1*
+%{_mandir}/man1/%{name}.1*
