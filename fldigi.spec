@@ -1,5 +1,5 @@
 Name:		fldigi
-Version:	4.1.09
+Version:	4.1.11
 Release:	1
 Summary:	A software modem for Amateur Radio use
 License:	GPLv3+
