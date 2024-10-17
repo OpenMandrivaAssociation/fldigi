@@ -4,7 +4,7 @@ Release:	1
 Summary:	A software modem for Amateur Radio use
 License:	GPLv3+
 Group:		Communications/Radio
-URL:		http://www.w1hkj.com
+URL:		https://www.w1hkj.com
 Source0:	https://sourceforge.net/projects/fldigi/files/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:	pkgconfig(hamlib) >= 1.2.4
 BuildRequires:	pkgconfig(libpng) >= 1.2.8
