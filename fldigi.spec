@@ -6,6 +6,11 @@ License:	GPLv3+
 Group:		Communications/Radio
 URL:		https://www.w1hkj.com
 Source0:	https://sourceforge.net/projects/fldigi/files/%{name}/%{name}-%{version}.tar.gz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(hamlib) >= 1.2.4
 BuildRequires:	pkgconfig(libpng) >= 1.2.8
 BuildRequires:	pkgconfig(libpulse-simple) >= 0.9.7
